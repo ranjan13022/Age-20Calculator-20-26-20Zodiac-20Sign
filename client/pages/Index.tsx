@@ -67,6 +67,7 @@ export default function Index() {
   const calculateAge = () => {
     setError("");
     setAgeResult(null);
+    setZodiacSign(null);
 
     let birthDate: Date;
 
