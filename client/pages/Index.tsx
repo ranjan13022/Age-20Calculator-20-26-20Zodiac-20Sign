@@ -20,6 +20,10 @@ export default function Index() {
   const [date, setDate] = useState<Date>();
   const [ageResult, setAgeResult] = useState<AgeResult | null>(null);
   const [error, setError] = useState<string>("");
+  const [inputMethod, setInputMethod] = useState<"calendar" | "manual">("calendar");
+  const [manualDay, setManualDay] = useState<string>("");
+  const [manualMonth, setManualMonth] = useState<string>("");
+  const [manualYear, setManualYear] = useState<string>("");
 
   const calculateAge = () => {
     setError("");
