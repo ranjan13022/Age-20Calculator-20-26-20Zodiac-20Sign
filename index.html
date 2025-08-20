@@ -1,397 +1,581 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Age Calculator - Calculate Your Exact Age</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
     <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <div class="icon">
-                <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </div>
-            <h1>Age Calculator</h1>
-            <p class="subtitle">Discover your exact age and zodiac sign</p>
+      <!-- Header -->
+      <div class="header">
+        <div class="icon">
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </div>
+        <h1>Age Calculator</h1>
+        <p class="subtitle">Discover your exact age and zodiac sign</p>
+      </div>
+
+      <!-- Main Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2 class="card-title">Calculate Your Age</h2>
+          <p class="card-description">
+            Select your date of birth to get started
+          </p>
         </div>
 
-        <!-- Main Card -->
-        <div class="card">
-            <div class="card-header">
-                <h2 class="card-title">Calculate Your Age</h2>
-                <p class="card-description">Select your date of birth to get started</p>
-            </div>
-
-            <!-- Input Method Toggle -->
-            <div class="form-group">
-                <label class="label">Choose Input Method</label>
-                <div class="toggle-group">
-                    <button class="toggle-btn active" id="calendarToggle">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                            <line x1="16" y1="2" x2="16" y2="6"></line>
-                            <line x1="8" y1="2" x2="8" y2="6"></line>
-                            <line x1="3" y1="10" x2="21" y2="10"></line>
-                        </svg>
-                        Calendar
-                    </button>
-                    <button class="toggle-btn inactive" id="manualToggle">
-                        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                            <path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"></path>
-                        </svg>
-                        Manual
-                    </button>
-                </div>
-            </div>
-
-            <!-- Date Input -->
-            <div class="form-group">
-                <label class="label">Date of Birth</label>
-                
-                <!-- Calendar Input -->
-                <div id="calendarInput">
-                    <input type="date" id="dateInput" class="date-picker-btn" style="color: #374151;">
-                </div>
-
-                <!-- Manual Input -->
-                <div id="manualInput" class="hidden">
-                    <div class="manual-inputs">
-                        <div class="input-group">
-                            <label class="input-label">Day</label>
-                            <select id="daySelect" class="select">
-                                <option value="">Day</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label class="input-label">Month</label>
-                            <select id="monthSelect" class="select">
-                                <option value="">Month</option>
-                            </select>
-                        </div>
-                        <div class="input-group">
-                            <label class="input-label">Year</label>
-                            <input type="number" id="yearInput" class="input" placeholder="Year" min="1900" max="2025">
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Error Message -->
-            <div id="errorMessage" class="error hidden"></div>
-
-            <!-- Calculate Button -->
-            <button class="calculate-btn" id="calculateBtn">
-                <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12,6 12,12 16,14"></polyline>
-                </svg>
-                Calculate My Age
+        <!-- Input Method Toggle -->
+        <div class="form-group">
+          <label class="label">Choose Input Method</label>
+          <div class="toggle-group">
+            <button class="toggle-btn active" id="calendarToggle">
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                <line x1="16" y1="2" x2="16" y2="6"></line>
+                <line x1="8" y1="2" x2="8" y2="6"></line>
+                <line x1="3" y1="10" x2="21" y2="10"></line>
+              </svg>
+              Calendar
             </button>
+            <button class="toggle-btn inactive" id="manualToggle">
+              <svg
+                width="16"
+                height="16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5Z"
+                ></path>
+              </svg>
+              Manual
+            </button>
+          </div>
+        </div>
 
-            <!-- Results -->
-            <div id="results" class="results">
-                <div class="divider"></div>
-                
-                <div>
-                    <h3 class="age-title">Your Age</h3>
-                    <div class="age-grid">
-                        <div class="age-item years">
-                            <div class="age-number" id="yearsResult">0</div>
-                            <div class="age-label" id="yearsLabel">Years</div>
-                        </div>
-                        <div class="age-item months">
-                            <div class="age-number" id="monthsResult">0</div>
-                            <div class="age-label" id="monthsLabel">Months</div>
-                        </div>
-                        <div class="age-item days">
-                            <div class="age-number" id="daysResult">0</div>
-                            <div class="age-label" id="daysLabel">Days</div>
-                        </div>
-                    </div>
-                    
-                    <p class="birth-date" id="birthDateText"></p>
-                </div>
+        <!-- Date Input -->
+        <div class="form-group">
+          <label class="label">Date of Birth</label>
 
-                <!-- Zodiac Sign -->
-                <div id="zodiacCard" class="zodiac-card">
-                    <div class="zodiac-header">
-                        <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M9.5 2l.5 1.5L11 2l1 1.5L12.5 2l.5 1.5L14 2l1 1.5L15.5 2l.5 1.5L17 2v2.5l-1.5.5L17 6l-1.5.5L17 7.5l-1.5.5L17 9h-2.5l-.5-1.5L13 9l-.5-1.5L11.5 9l-.5-1.5L10 9H7.5l.5-1.5L7 7.5l1.5-.5L7 6l1.5-.5L7 4.5l1.5-.5L7 2.5h2.5z"></path>
-                        </svg>
-                        <h4 class="zodiac-title">Your Zodiac Sign</h4>
-                    </div>
-                    <div class="zodiac-symbol" id="zodiacSymbol">♈</div>
-                    <div class="zodiac-name" id="zodiacName">Aries</div>
-                    <div class="zodiac-dates" id="zodiacDates">Mar 21 - Apr 19</div>
-                    <div class="zodiac-element" id="zodiacElement">Fire Element</div>
-                </div>
+          <!-- Calendar Input -->
+          <div id="calendarInput">
+            <input
+              type="date"
+              id="dateInput"
+              class="date-picker-btn"
+              style="color: #374151"
+            />
+          </div>
 
-                <button class="reset-btn" id="resetBtn">
-                    <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                        <line x1="16" y1="2" x2="16" y2="6"></line>
-                        <line x1="8" y1="2" x2="8" y2="6"></line>
-                        <line x1="3" y1="10" x2="21" y2="10"></line>
-                    </svg>
-                    Calculate Another Date
-                </button>
+          <!-- Manual Input -->
+          <div id="manualInput" class="hidden">
+            <div class="manual-inputs">
+              <div class="input-group">
+                <label class="input-label">Day</label>
+                <select id="daySelect" class="select">
+                  <option value="">Day</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label class="input-label">Month</label>
+                <select id="monthSelect" class="select">
+                  <option value="">Month</option>
+                </select>
+              </div>
+              <div class="input-group">
+                <label class="input-label">Year</label>
+                <input
+                  type="number"
+                  id="yearInput"
+                  class="input"
+                  placeholder="Year"
+                  min="1900"
+                  max="2025"
+                />
+              </div>
             </div>
+          </div>
         </div>
 
-        <!-- Footer -->
-        <div class="footer">
-            <p class="footer-text">Accurate age calculation and zodiac sign detection</p>
+        <!-- Error Message -->
+        <div id="errorMessage" class="error hidden"></div>
+
+        <!-- Calculate Button -->
+        <button class="calculate-btn" id="calculateBtn">
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12,6 12,12 16,14"></polyline>
+          </svg>
+          Calculate My Age
+        </button>
+
+        <!-- Results -->
+        <div id="results" class="results">
+          <div class="divider"></div>
+
+          <div>
+            <h3 class="age-title">Your Age</h3>
+            <div class="age-grid">
+              <div class="age-item years">
+                <div class="age-number" id="yearsResult">0</div>
+                <div class="age-label" id="yearsLabel">Years</div>
+              </div>
+              <div class="age-item months">
+                <div class="age-number" id="monthsResult">0</div>
+                <div class="age-label" id="monthsLabel">Months</div>
+              </div>
+              <div class="age-item days">
+                <div class="age-number" id="daysResult">0</div>
+                <div class="age-label" id="daysLabel">Days</div>
+              </div>
+            </div>
+
+            <p class="birth-date" id="birthDateText"></p>
+          </div>
+
+          <!-- Zodiac Sign -->
+          <div id="zodiacCard" class="zodiac-card">
+            <div class="zodiac-header">
+              <svg
+                width="20"
+                height="20"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9.5 2l.5 1.5L11 2l1 1.5L12.5 2l.5 1.5L14 2l1 1.5L15.5 2l.5 1.5L17 2v2.5l-1.5.5L17 6l-1.5.5L17 7.5l-1.5.5L17 9h-2.5l-.5-1.5L13 9l-.5-1.5L11.5 9l-.5-1.5L10 9H7.5l.5-1.5L7 7.5l1.5-.5L7 6l1.5-.5L7 4.5l1.5-.5L7 2.5h2.5z"
+                ></path>
+              </svg>
+              <h4 class="zodiac-title">Your Zodiac Sign</h4>
+            </div>
+            <div class="zodiac-symbol" id="zodiacSymbol">♈</div>
+            <div class="zodiac-name" id="zodiacName">Aries</div>
+            <div class="zodiac-dates" id="zodiacDates">Mar 21 - Apr 19</div>
+            <div class="zodiac-element" id="zodiacElement">Fire Element</div>
+          </div>
+
+          <button class="reset-btn" id="resetBtn">
+            <svg
+              width="16"
+              height="16"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              viewBox="0 0 24 24"
+            >
+              <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+              <line x1="16" y1="2" x2="16" y2="6"></line>
+              <line x1="8" y1="2" x2="8" y2="6"></line>
+              <line x1="3" y1="10" x2="21" y2="10"></line>
+            </svg>
+            Calculate Another Date
+          </button>
         </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="footer">
+        <p class="footer-text">
+          Accurate age calculation and zodiac sign detection
+        </p>
+      </div>
     </div>
 
     <script>
-        // Global variables
-        let inputMethod = 'calendar';
-        
-        // DOM elements
-        const calendarToggle = document.getElementById('calendarToggle');
-        const manualToggle = document.getElementById('manualToggle');
-        const calendarInput = document.getElementById('calendarInput');
-        const manualInput = document.getElementById('manualInput');
-        const dateInput = document.getElementById('dateInput');
-        const daySelect = document.getElementById('daySelect');
-        const monthSelect = document.getElementById('monthSelect');
-        const yearInput = document.getElementById('yearInput');
-        const calculateBtn = document.getElementById('calculateBtn');
-        const errorMessage = document.getElementById('errorMessage');
-        const results = document.getElementById('results');
-        const resetBtn = document.getElementById('resetBtn');
+      // Global variables
+      let inputMethod = "calendar";
 
-        // Initialize the app
-        function init() {
-            setupEventListeners();
-            populateSelects();
-            hideResults();
+      // DOM elements
+      const calendarToggle = document.getElementById("calendarToggle");
+      const manualToggle = document.getElementById("manualToggle");
+      const calendarInput = document.getElementById("calendarInput");
+      const manualInput = document.getElementById("manualInput");
+      const dateInput = document.getElementById("dateInput");
+      const daySelect = document.getElementById("daySelect");
+      const monthSelect = document.getElementById("monthSelect");
+      const yearInput = document.getElementById("yearInput");
+      const calculateBtn = document.getElementById("calculateBtn");
+      const errorMessage = document.getElementById("errorMessage");
+      const results = document.getElementById("results");
+      const resetBtn = document.getElementById("resetBtn");
+
+      // Initialize the app
+      function init() {
+        setupEventListeners();
+        populateSelects();
+        hideResults();
+      }
+
+      // Setup event listeners
+      function setupEventListeners() {
+        calendarToggle.addEventListener("click", () =>
+          switchInputMethod("calendar"),
+        );
+        manualToggle.addEventListener("click", () =>
+          switchInputMethod("manual"),
+        );
+        calculateBtn.addEventListener("click", calculateAge);
+        resetBtn.addEventListener("click", resetCalculator);
+      }
+
+      // Populate day and month selects
+      function populateSelects() {
+        // Populate days
+        for (let i = 1; i <= 31; i++) {
+          const option = document.createElement("option");
+          option.value = i;
+          option.textContent = i;
+          daySelect.appendChild(option);
         }
 
-        // Setup event listeners
-        function setupEventListeners() {
-            calendarToggle.addEventListener('click', () => switchInputMethod('calendar'));
-            manualToggle.addEventListener('click', () => switchInputMethod('manual'));
-            calculateBtn.addEventListener('click', calculateAge);
-            resetBtn.addEventListener('click', resetCalculator);
+        // Populate months
+        const months = [
+          "January",
+          "February",
+          "March",
+          "April",
+          "May",
+          "June",
+          "July",
+          "August",
+          "September",
+          "October",
+          "November",
+          "December",
+        ];
+        months.forEach((month, index) => {
+          const option = document.createElement("option");
+          option.value = index + 1;
+          option.textContent = month;
+          monthSelect.appendChild(option);
+        });
+      }
+
+      // Switch input method
+      function switchInputMethod(method) {
+        inputMethod = method;
+
+        if (method === "calendar") {
+          calendarToggle.classList.remove("inactive");
+          calendarToggle.classList.add("active");
+          manualToggle.classList.remove("active");
+          manualToggle.classList.add("inactive");
+          calendarInput.classList.remove("hidden");
+          manualInput.classList.add("hidden");
+        } else {
+          manualToggle.classList.remove("inactive");
+          manualToggle.classList.add("active");
+          calendarToggle.classList.remove("active");
+          calendarToggle.classList.add("inactive");
+          manualInput.classList.remove("hidden");
+          calendarInput.classList.add("hidden");
         }
 
-        // Populate day and month selects
-        function populateSelects() {
-            // Populate days
-            for (let i = 1; i <= 31; i++) {
-                const option = document.createElement('option');
-                option.value = i;
-                option.textContent = i;
-                daySelect.appendChild(option);
-            }
+        hideError();
+      }
 
-            // Populate months
-            const months = [
-                'January', 'February', 'March', 'April', 'May', 'June',
-                'July', 'August', 'September', 'October', 'November', 'December'
-            ];
-            months.forEach((month, index) => {
-                const option = document.createElement('option');
-                option.value = index + 1;
-                option.textContent = month;
-                monthSelect.appendChild(option);
-            });
+      // Get zodiac sign
+      function getZodiacSign(birthDate) {
+        const month = birthDate.getMonth() + 1;
+        const day = birthDate.getDate();
+
+        const signs = [
+          {
+            name: "Capricorn",
+            symbol: "♑",
+            element: "Earth",
+            dates: "Dec 22 - Jan 19",
+            start: [12, 22],
+            end: [1, 19],
+          },
+          {
+            name: "Aquarius",
+            symbol: "♒",
+            element: "Air",
+            dates: "Jan 20 - Feb 18",
+            start: [1, 20],
+            end: [2, 18],
+          },
+          {
+            name: "Pisces",
+            symbol: "♓",
+            element: "Water",
+            dates: "Feb 19 - Mar 20",
+            start: [2, 19],
+            end: [3, 20],
+          },
+          {
+            name: "Aries",
+            symbol: "♈",
+            element: "Fire",
+            dates: "Mar 21 - Apr 19",
+            start: [3, 21],
+            end: [4, 19],
+          },
+          {
+            name: "Taurus",
+            symbol: "♉",
+            element: "Earth",
+            dates: "Apr 20 - May 20",
+            start: [4, 20],
+            end: [5, 20],
+          },
+          {
+            name: "Gemini",
+            symbol: "♊",
+            element: "Air",
+            dates: "May 21 - Jun 20",
+            start: [5, 21],
+            end: [6, 20],
+          },
+          {
+            name: "Cancer",
+            symbol: "♋",
+            element: "Water",
+            dates: "Jun 21 - Jul 22",
+            start: [6, 21],
+            end: [7, 22],
+          },
+          {
+            name: "Leo",
+            symbol: "♌",
+            element: "Fire",
+            dates: "Jul 23 - Aug 22",
+            start: [7, 23],
+            end: [8, 22],
+          },
+          {
+            name: "Virgo",
+            symbol: "♍",
+            element: "Earth",
+            dates: "Aug 23 - Sep 22",
+            start: [8, 23],
+            end: [9, 22],
+          },
+          {
+            name: "Libra",
+            symbol: "♎",
+            element: "Air",
+            dates: "Sep 23 - Oct 22",
+            start: [9, 23],
+            end: [10, 22],
+          },
+          {
+            name: "Scorpio",
+            symbol: "♏",
+            element: "Water",
+            dates: "Oct 23 - Nov 21",
+            start: [10, 23],
+            end: [11, 21],
+          },
+          {
+            name: "Sagittarius",
+            symbol: "♐",
+            element: "Fire",
+            dates: "Nov 22 - Dec 21",
+            start: [11, 22],
+            end: [12, 21],
+          },
+        ];
+
+        for (const sign of signs) {
+          const [startMonth, startDay] = sign.start;
+          const [endMonth, endDay] = sign.end;
+
+          if (
+            (month === startMonth && day >= startDay) ||
+            (month === endMonth && day <= endDay)
+          ) {
+            return sign;
+          }
         }
 
-        // Switch input method
-        function switchInputMethod(method) {
-            inputMethod = method;
-            
-            if (method === 'calendar') {
-                calendarToggle.classList.remove('inactive');
-                calendarToggle.classList.add('active');
-                manualToggle.classList.remove('active');
-                manualToggle.classList.add('inactive');
-                calendarInput.classList.remove('hidden');
-                manualInput.classList.add('hidden');
-            } else {
-                manualToggle.classList.remove('inactive');
-                manualToggle.classList.add('active');
-                calendarToggle.classList.remove('active');
-                calendarToggle.classList.add('inactive');
-                manualInput.classList.remove('hidden');
-                calendarInput.classList.add('hidden');
-            }
-            
-            hideError();
+        return signs[0]; // Default to Capricorn
+      }
+
+      // Calculate age
+      function calculateAge() {
+        hideError();
+        hideResults();
+
+        let birthDate;
+
+        if (inputMethod === "calendar") {
+          if (!dateInput.value) {
+            showError("Please select your date of birth");
+            return;
+          }
+          birthDate = new Date(dateInput.value);
+        } else {
+          const day = daySelect.value;
+          const month = monthSelect.value;
+          const year = yearInput.value;
+
+          if (!day || !month || !year) {
+            showError("Please enter day, month, and year");
+            return;
+          }
+
+          const dayNum = parseInt(day);
+          const monthNum = parseInt(month) - 1; // JavaScript months are 0-indexed
+          const yearNum = parseInt(year);
+
+          if (
+            dayNum < 1 ||
+            dayNum > 31 ||
+            monthNum < 0 ||
+            monthNum > 11 ||
+            yearNum < 1900 ||
+            yearNum > new Date().getFullYear()
+          ) {
+            showError("Please enter a valid date");
+            return;
+          }
+
+          birthDate = new Date(yearNum, monthNum, dayNum);
+
+          // Check if the date is valid
+          if (
+            birthDate.getDate() !== dayNum ||
+            birthDate.getMonth() !== monthNum ||
+            birthDate.getFullYear() !== yearNum
+          ) {
+            showError("Please enter a valid date");
+            return;
+          }
         }
 
-        // Get zodiac sign
-        function getZodiacSign(birthDate) {
-            const month = birthDate.getMonth() + 1;
-            const day = birthDate.getDate();
-
-            const signs = [
-                { name: "Capricorn", symbol: "♑", element: "Earth", dates: "Dec 22 - Jan 19", start: [12, 22], end: [1, 19] },
-                { name: "Aquarius", symbol: "♒", element: "Air", dates: "Jan 20 - Feb 18", start: [1, 20], end: [2, 18] },
-                { name: "Pisces", symbol: "♓", element: "Water", dates: "Feb 19 - Mar 20", start: [2, 19], end: [3, 20] },
-                { name: "Aries", symbol: "♈", element: "Fire", dates: "Mar 21 - Apr 19", start: [3, 21], end: [4, 19] },
-                { name: "Taurus", symbol: "♉", element: "Earth", dates: "Apr 20 - May 20", start: [4, 20], end: [5, 20] },
-                { name: "Gemini", symbol: "♊", element: "Air", dates: "May 21 - Jun 20", start: [5, 21], end: [6, 20] },
-                { name: "Cancer", symbol: "♋", element: "Water", dates: "Jun 21 - Jul 22", start: [6, 21], end: [7, 22] },
-                { name: "Leo", symbol: "♌", element: "Fire", dates: "Jul 23 - Aug 22", start: [7, 23], end: [8, 22] },
-                { name: "Virgo", symbol: "♍", element: "Earth", dates: "Aug 23 - Sep 22", start: [8, 23], end: [9, 22] },
-                { name: "Libra", symbol: "♎", element: "Air", dates: "Sep 23 - Oct 22", start: [9, 23], end: [10, 22] },
-                { name: "Scorpio", symbol: "♏", element: "Water", dates: "Oct 23 - Nov 21", start: [10, 23], end: [11, 21] },
-                { name: "Sagittarius", symbol: "♐", element: "Fire", dates: "Nov 22 - Dec 21", start: [11, 22], end: [12, 21] }
-            ];
-
-            for (const sign of signs) {
-                const [startMonth, startDay] = sign.start;
-                const [endMonth, endDay] = sign.end;
-                
-                if ((month === startMonth && day >= startDay) || (month === endMonth && day <= endDay)) {
-                    return sign;
-                }
-            }
-            
-            return signs[0]; // Default to Capricorn
+        const today = new Date();
+        if (birthDate > today) {
+          showError("Date of birth cannot be in the future");
+          return;
         }
 
         // Calculate age
-        function calculateAge() {
-            hideError();
-            hideResults();
-
-            let birthDate;
-
-            if (inputMethod === 'calendar') {
-                if (!dateInput.value) {
-                    showError('Please select your date of birth');
-                    return;
-                }
-                birthDate = new Date(dateInput.value);
-            } else {
-                const day = daySelect.value;
-                const month = monthSelect.value;
-                const year = yearInput.value;
-
-                if (!day || !month || !year) {
-                    showError('Please enter day, month, and year');
-                    return;
-                }
-
-                const dayNum = parseInt(day);
-                const monthNum = parseInt(month) - 1; // JavaScript months are 0-indexed
-                const yearNum = parseInt(year);
-
-                if (dayNum < 1 || dayNum > 31 || monthNum < 0 || monthNum > 11 || yearNum < 1900 || yearNum > new Date().getFullYear()) {
-                    showError('Please enter a valid date');
-                    return;
-                }
-
-                birthDate = new Date(yearNum, monthNum, dayNum);
-
-                // Check if the date is valid
-                if (birthDate.getDate() !== dayNum || birthDate.getMonth() !== monthNum || birthDate.getFullYear() !== yearNum) {
-                    showError('Please enter a valid date');
-                    return;
-                }
-            }
-
-            const today = new Date();
-            if (birthDate > today) {
-                showError('Date of birth cannot be in the future');
-                return;
-            }
-
-            // Calculate age
-            const ageData = calculateExactAge(birthDate, today);
-            const zodiac = getZodiacSign(birthDate);
-
-            // Display results
-            displayResults(ageData, zodiac, birthDate);
-        }
-
-        // Calculate exact age
-        function calculateExactAge(birthDate, currentDate) {
-            let years = currentDate.getFullYear() - birthDate.getFullYear();
-            let months = currentDate.getMonth() - birthDate.getMonth();
-            let days = currentDate.getDate() - birthDate.getDate();
-
-            if (days < 0) {
-                months--;
-                const daysInLastMonth = new Date(currentDate.getFullYear(), currentDate.getMonth(), 0).getDate();
-                days += daysInLastMonth;
-            }
-
-            if (months < 0) {
-                years--;
-                months += 12;
-            }
-
-            return { years, months, days };
-        }
+        const ageData = calculateExactAge(birthDate, today);
+        const zodiac = getZodiacSign(birthDate);
 
         // Display results
-        function displayResults(ageData, zodiac, birthDate) {
-            // Age results
-            document.getElementById('yearsResult').textContent = ageData.years;
-            document.getElementById('monthsResult').textContent = ageData.months;
-            document.getElementById('daysResult').textContent = ageData.days;
+        displayResults(ageData, zodiac, birthDate);
+      }
 
-            // Labels
-            document.getElementById('yearsLabel').textContent = ageData.years === 1 ? 'Year' : 'Years';
-            document.getElementById('monthsLabel').textContent = ageData.months === 1 ? 'Month' : 'Months';
-            document.getElementById('daysLabel').textContent = ageData.days === 1 ? 'Day' : 'Days';
+      // Calculate exact age
+      function calculateExactAge(birthDate, currentDate) {
+        let years = currentDate.getFullYear() - birthDate.getFullYear();
+        let months = currentDate.getMonth() - birthDate.getMonth();
+        let days = currentDate.getDate() - birthDate.getDate();
 
-            // Birth date
-            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-            const formattedDate = birthDate.toLocaleDateString('en-US', options);
-            document.getElementById('birthDateText').textContent = `Born on ${formattedDate}`;
-
-            // Zodiac sign
-            document.getElementById('zodiacSymbol').textContent = zodiac.symbol;
-            document.getElementById('zodiacName').textContent = zodiac.name;
-            document.getElementById('zodiacDates').textContent = zodiac.dates;
-            document.getElementById('zodiacElement').textContent = `${zodiac.element} Element`;
-
-            // Show results with animation
-            showResults();
+        if (days < 0) {
+          months--;
+          const daysInLastMonth = new Date(
+            currentDate.getFullYear(),
+            currentDate.getMonth(),
+            0,
+          ).getDate();
+          days += daysInLastMonth;
         }
 
-        // Show/hide functions
-        function showError(message) {
-            errorMessage.textContent = message;
-            errorMessage.classList.remove('hidden');
+        if (months < 0) {
+          years--;
+          months += 12;
         }
 
-        function hideError() {
-            errorMessage.classList.add('hidden');
-        }
+        return { years, months, days };
+      }
 
-        function showResults() {
-            results.classList.add('show');
-        }
+      // Display results
+      function displayResults(ageData, zodiac, birthDate) {
+        // Age results
+        document.getElementById("yearsResult").textContent = ageData.years;
+        document.getElementById("monthsResult").textContent = ageData.months;
+        document.getElementById("daysResult").textContent = ageData.days;
 
-        function hideResults() {
-            results.classList.remove('show');
-        }
+        // Labels
+        document.getElementById("yearsLabel").textContent =
+          ageData.years === 1 ? "Year" : "Years";
+        document.getElementById("monthsLabel").textContent =
+          ageData.months === 1 ? "Month" : "Months";
+        document.getElementById("daysLabel").textContent =
+          ageData.days === 1 ? "Day" : "Days";
 
-        // Reset calculator
-        function resetCalculator() {
-            dateInput.value = '';
-            daySelect.value = '';
-            monthSelect.value = '';
-            yearInput.value = '';
-            hideError();
-            hideResults();
-        }
+        // Birth date
+        const options = {
+          weekday: "long",
+          year: "numeric",
+          month: "long",
+          day: "numeric",
+        };
+        const formattedDate = birthDate.toLocaleDateString("en-US", options);
+        document.getElementById("birthDateText").textContent =
+          `Born on ${formattedDate}`;
 
-        // Initialize the app when DOM is loaded
-        document.addEventListener('DOMContentLoaded', init);
+        // Zodiac sign
+        document.getElementById("zodiacSymbol").textContent = zodiac.symbol;
+        document.getElementById("zodiacName").textContent = zodiac.name;
+        document.getElementById("zodiacDates").textContent = zodiac.dates;
+        document.getElementById("zodiacElement").textContent =
+          `${zodiac.element} Element`;
+
+        // Show results with animation
+        showResults();
+      }
+
+      // Show/hide functions
+      function showError(message) {
+        errorMessage.textContent = message;
+        errorMessage.classList.remove("hidden");
+      }
+
+      function hideError() {
+        errorMessage.classList.add("hidden");
+      }
+
+      function showResults() {
+        results.classList.add("show");
+      }
+
+      function hideResults() {
+        results.classList.remove("show");
+      }
+
+      // Reset calculator
+      function resetCalculator() {
+        dateInput.value = "";
+        daySelect.value = "";
+        monthSelect.value = "";
+        yearInput.value = "";
+        hideError();
+        hideResults();
+      }
+
+      // Initialize the app when DOM is loaded
+      document.addEventListener("DOMContentLoaded", init);
     </script>
-</body>
+  </body>
 </html>
