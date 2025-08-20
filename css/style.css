@@ -388,7 +388,7 @@ h1 {
   display: none;
 }
 
-/* Mobile responsiveness */
+
 @media (max-width: 640px) {
   .manual-inputs {
     grid-template-columns: 1fr;
