@@ -363,7 +363,7 @@ export default function Index() {
         {/* Footer */}
         <div className="text-center mt-8">
           <p className="text-sm text-gray-500">
-            Accurate age calculation down to the day
+            Accurate age calculation and zodiac sign detection
           </p>
         </div>
       </div>
