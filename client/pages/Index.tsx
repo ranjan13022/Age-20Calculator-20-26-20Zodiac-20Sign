@@ -89,6 +89,9 @@ export default function Index() {
     setDate(undefined);
     setAgeResult(null);
     setError("");
+    setManualDay("");
+    setManualMonth("");
+    setManualYear("");
   };
 
   return (
