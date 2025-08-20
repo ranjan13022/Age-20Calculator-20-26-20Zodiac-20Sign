@@ -275,9 +275,14 @@ export default function Index() {
                     </div>
                   </div>
                   
-                  {date && (
+                  {(date || (manualDay && manualMonth && manualYear)) && (
                     <p className="text-sm text-gray-600 mt-4">
-                      Born on {format(date, "EEEE, MMMM do, yyyy")}
+                      Born on {inputMethod === "calendar" && date
+                        ? format(date, "EEEE, MMMM do, yyyy")
+                        : inputMethod === "manual" && manualDay && manualMonth && manualYear
+                        ? format(new Date(parseInt(manualYear), parseInt(manualMonth) - 1, parseInt(manualDay)), "EEEE, MMMM do, yyyy")
+                        : ""
+                      }
                     </p>
                   )}
                 </div>
