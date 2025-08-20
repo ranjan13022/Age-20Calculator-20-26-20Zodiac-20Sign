@@ -116,35 +116,125 @@ export default function Index() {
           </CardHeader>
           
           <CardContent className="space-y-6">
-            {/* Date Picker */}
+            {/* Input Method Toggle */}
+            <div className="space-y-3">
+              <label className="text-sm font-medium text-gray-700">Choose Input Method</label>
+              <div className="flex bg-gray-100 rounded-lg p-1">
+                <Button
+                  type="button"
+                  variant={inputMethod === "calendar" ? "default" : "ghost"}
+                  size="sm"
+                  className={cn(
+                    "flex-1 h-8",
+                    inputMethod === "calendar"
+                      ? "bg-white shadow-sm"
+                      : "hover:bg-transparent"
+                  )}
+                  onClick={() => setInputMethod("calendar")}
+                >
+                  <CalendarIcon className="mr-2 h-4 w-4" />
+                  Calendar
+                </Button>
+                <Button
+                  type="button"
+                  variant={inputMethod === "manual" ? "default" : "ghost"}
+                  size="sm"
+                  className={cn(
+                    "flex-1 h-8",
+                    inputMethod === "manual"
+                      ? "bg-white shadow-sm"
+                      : "hover:bg-transparent"
+                  )}
+                  onClick={() => setInputMethod("manual")}
+                >
+                  <Edit3 className="mr-2 h-4 w-4" />
+                  Manual
+                </Button>
+              </div>
+            </div>
+
+            {/* Date Input */}
             <div className="space-y-2">
               <label className="text-sm font-medium text-gray-700">Date of Birth</label>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <Button
-                    variant="outline"
-                    className={cn(
-                      "w-full justify-start text-left font-normal h-12 bg-white/80 hover:bg-white/90 border-gray-200",
-                      !date && "text-muted-foreground"
-                    )}
-                  >
-                    <CalendarIcon className="mr-3 h-5 w-5 text-gray-500" />
-                    {date ? format(date, "PPP") : "Pick your birth date"}
-                  </Button>
-                </PopoverTrigger>
-                <PopoverContent className="w-auto p-0 bg-white" align="center">
-                  <Calendar
-                    mode="single"
-                    selected={date}
-                    onSelect={setDate}
-                    disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
-                    initialFocus
-                    fromYear={1900}
-                    toYear={new Date().getFullYear()}
-                    captionLayout="dropdown-buttons"
-                  />
-                </PopoverContent>
-              </Popover>
+
+              {inputMethod === "calendar" ? (
+                <Popover>
+                  <PopoverTrigger asChild>
+                    <Button
+                      variant="outline"
+                      className={cn(
+                        "w-full justify-start text-left font-normal h-12 bg-white/80 hover:bg-white/90 border-gray-200",
+                        !date && "text-muted-foreground"
+                      )}
+                    >
+                      <CalendarIcon className="mr-3 h-5 w-5 text-gray-500" />
+                      {date ? format(date, "PPP") : "Pick your birth date"}
+                    </Button>
+                  </PopoverTrigger>
+                  <PopoverContent className="w-auto p-0 bg-white" align="center">
+                    <Calendar
+                      mode="single"
+                      selected={date}
+                      onSelect={setDate}
+                      disabled={(date) => date > new Date() || date < new Date("1900-01-01")}
+                      initialFocus
+                      fromYear={1900}
+                      toYear={new Date().getFullYear()}
+                      captionLayout="dropdown-buttons"
+                    />
+                  </PopoverContent>
+                </Popover>
+              ) : (
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="space-y-1">
+                    <label className="text-xs text-gray-500">Day</label>
+                    <Select value={manualDay} onValueChange={setManualDay}>
+                      <SelectTrigger className="h-12 bg-white/80">
+                        <SelectValue placeholder="Day" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {Array.from({ length: 31 }, (_, i) => (
+                          <SelectItem key={i + 1} value={(i + 1).toString()}>
+                            {i + 1}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs text-gray-500">Month</label>
+                    <Select value={manualMonth} onValueChange={setManualMonth}>
+                      <SelectTrigger className="h-12 bg-white/80">
+                        <SelectValue placeholder="Month" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {[
+                          "January", "February", "March", "April", "May", "June",
+                          "July", "August", "September", "October", "November", "December"
+                        ].map((month, index) => (
+                          <SelectItem key={index + 1} value={(index + 1).toString()}>
+                            {month}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  <div className="space-y-1">
+                    <label className="text-xs text-gray-500">Year</label>
+                    <Input
+                      type="number"
+                      placeholder="Year"
+                      value={manualYear}
+                      onChange={(e) => setManualYear(e.target.value)}
+                      min="1900"
+                      max={new Date().getFullYear()}
+                      className="h-12 bg-white/80"
+                    />
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Error Message */}
