@@ -29,13 +29,40 @@ export default function Index() {
     setError("");
     setAgeResult(null);
 
-    if (!date) {
-      setError("Please select your date of birth");
-      return;
+    let birthDate: Date;
+
+    if (inputMethod === "calendar") {
+      if (!date) {
+        setError("Please select your date of birth");
+        return;
+      }
+      birthDate = startOfDay(date);
+    } else {
+      // Manual input validation
+      if (!manualDay || !manualMonth || !manualYear) {
+        setError("Please enter day, month, and year");
+        return;
+      }
+
+      const day = parseInt(manualDay);
+      const month = parseInt(manualMonth) - 1; // JavaScript months are 0-indexed
+      const year = parseInt(manualYear);
+
+      if (day < 1 || day > 31 || month < 0 || month > 11 || year < 1900 || year > new Date().getFullYear()) {
+        setError("Please enter a valid date");
+        return;
+      }
+
+      birthDate = startOfDay(new Date(year, month, day));
+
+      // Check if the date is valid (handles invalid dates like Feb 30)
+      if (birthDate.getDate() !== day || birthDate.getMonth() !== month || birthDate.getFullYear() !== year) {
+        setError("Please enter a valid date");
+        return;
+      }
     }
 
     const today = startOfDay(new Date());
-    const birthDate = startOfDay(date);
 
     if (isAfter(birthDate, today)) {
       setError("Date of birth cannot be in the future");
