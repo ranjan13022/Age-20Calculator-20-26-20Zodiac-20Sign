@@ -145,7 +145,7 @@ export default function Index() {
             <Cake className="w-8 h-8 text-white" />
           </div>
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Age Calculator</h1>
-          <p className="text-gray-600">Discover your exact age in years, months, and days</p>
+          <p className="text-gray-600">Discover your exact age and zodiac sign</p>
         </div>
 
         {/* Main Calculator Card */}
