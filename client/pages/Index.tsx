@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Calendar as CalendarIcon, Cake, Clock, Calendar as CalendarIconSmall, Edit3 } from "lucide-react";
+import { Calendar as CalendarIcon, Cake, Clock, Calendar as CalendarIconSmall, Edit3, Stars } from "lucide-react";
 import { format, differenceInYears, differenceInMonths, differenceInDays, startOfDay, isAfter } from "date-fns";
 
 import { Button } from "@/components/ui/button";
@@ -14,6 +14,13 @@ interface AgeResult {
   years: number;
   months: number;
   days: number;
+}
+
+interface ZodiacSign {
+  name: string;
+  symbol: string;
+  element: string;
+  dates: string;
 }
 
 export default function Index() {
