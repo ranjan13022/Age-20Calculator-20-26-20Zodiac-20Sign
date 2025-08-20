@@ -129,6 +129,7 @@ export default function Index() {
   const resetCalculator = () => {
     setDate(undefined);
     setAgeResult(null);
+    setZodiacSign(null);
     setError("");
     setManualDay("");
     setManualMonth("");
