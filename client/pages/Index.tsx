@@ -329,6 +329,24 @@ export default function Index() {
                   )}
                 </div>
 
+                {/* Zodiac Sign */}
+                {zodiacSign && (
+                  <div className="bg-gradient-to-br from-amber-50 to-orange-100 p-4 rounded-xl border border-amber-200">
+                    <div className="text-center">
+                      <div className="flex items-center justify-center gap-2 mb-2">
+                        <Stars className="w-5 h-5 text-amber-600" />
+                        <h4 className="text-lg font-semibold text-amber-800">Your Zodiac Sign</h4>
+                      </div>
+                      <div className="text-3xl mb-2">{zodiacSign.symbol}</div>
+                      <div className="text-xl font-bold text-amber-700 mb-1">{zodiacSign.name}</div>
+                      <div className="text-sm text-amber-600 mb-1">{zodiacSign.dates}</div>
+                      <div className="inline-flex items-center px-3 py-1 bg-amber-100 rounded-full">
+                        <span className="text-xs font-medium text-amber-700">{zodiacSign.element} Element</span>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
                 <Button 
                   onClick={resetCalculator}
                   variant="outline" 
