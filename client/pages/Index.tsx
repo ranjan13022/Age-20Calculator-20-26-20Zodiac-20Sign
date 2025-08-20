@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Calendar as CalendarIcon, Cake, Clock, Calendar as CalendarIconSmall } from "lucide-react";
+import { Calendar as CalendarIcon, Cake, Clock, Calendar as CalendarIconSmall, Edit3 } from "lucide-react";
 import { format, differenceInYears, differenceInMonths, differenceInDays, startOfDay, isAfter } from "date-fns";
 
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 
 interface AgeResult {
