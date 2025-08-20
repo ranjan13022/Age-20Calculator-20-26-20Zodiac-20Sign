@@ -123,6 +123,7 @@ export default function Index() {
     const days = differenceInDays(today, monthsPassed);
 
     setAgeResult({ years, months, days });
+    setZodiacSign(getZodiacSign(birthDate));
   };
 
   const resetCalculator = () => {
